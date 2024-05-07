@@ -6,12 +6,12 @@ import Teams from './pages/Teams/Teams'
 import Contacts from './pages/Contacts/Contacts'
 import FAQ from './pages/FAQ/FAQ'
 import Invoices from './pages/Invoices/Invoices'
-import Profile from './pages/Profile/Profile'
 import Calendar from './pages/Calendar/Calendar'
 import BarChart from './pages/BarChart/BarChart'
 import PieChart from './pages/PieChart/PieChart'
 import LineChart from './pages/LineChart/LineChart'
 import GeoChart from './pages/Geography/GeoChart'
+import Form from './pages/Form/Form'
 
 function App() {
 const router = createBrowserRouter([
@@ -22,7 +22,7 @@ const router = createBrowserRouter([
       {path:"/contacts",element: <Contacts/>},
       {path:"/faq",element: <FAQ/>},
       {path:"/invoices",element: <Invoices/>},
-      {path:"/form",element: <Profile/>},
+      {path:"/form",element: <Form/>},
       {path:"/calendar",element: <Calendar/>},
       {path:"/bar",element: <BarChart/>},
       {path:"/pie",element: <PieChart/>},
