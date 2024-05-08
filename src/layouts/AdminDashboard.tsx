@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createTheme, styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
+// import CssBaseline from '@mui/material/CssBaseline';
 import TopBar from '../components/TopBar';
 import SideBar from '../components/SideBar';
 import { ThemeProvider } from '@emotion/react';
@@ -36,7 +36,7 @@ export default function AdminDashboard() {
     return (
         <ThemeProvider theme={theme}>
             <Box sx={{ display: 'flex' }}>
-                <CssBaseline />
+                {/* <CssBaseline /> */}
                 <TopBar handleDrawerOpen={handleDrawerOpen} open={open} setMode={setMode} />
 
                 <SideBar open={open} handleDrawerClose={handleDrawerClose} DrawerHeader={DrawerHeader} />

@@ -95,7 +95,7 @@ export default function SideBar({ open, handleDrawerClose, DrawerHeader }: SideB
   return (
 
     <>
-      <Drawer variant="permanent" open={open}>
+      <Drawer sx={{height: '100vh'}} variant="permanent" open={open}>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
