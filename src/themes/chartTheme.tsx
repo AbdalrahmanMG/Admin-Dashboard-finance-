@@ -11,7 +11,7 @@ export const theme=(Theme: Theme)=> ({
     "axis": {
         "domain": {
             "line": {
-                "stroke": Theme.palette.text.secondary,
+                "stroke": "red",
                 "strokeWidth": 1
             }
         },
