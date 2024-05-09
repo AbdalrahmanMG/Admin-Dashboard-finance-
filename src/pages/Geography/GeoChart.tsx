@@ -1,17 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { ResponsiveChoropleth } from "@nivo/geo";
-import { Box, useTheme } from "@mui/material";
+import { Box, Stack, Typography, useTheme } from "@mui/material";
 import { data } from "./data";
-import { theme } from './../../themes/chartTheme';
+import { theme } from "./../../themes/chartTheme";
 import { contries } from "./world_countries";
+import SliderBar from "../../components/SliderBar";
 
 export default function GeoChart() {
-  const Theme = useTheme()
+  const Theme = useTheme();
+
+  const [sliderValue, setSliderValue] = useState<number | number[]>(202);
+
+  // const handleSliderChange = (event: Event, newValue: number | number[]) => {
+  //   setSliderValue(newValue);
+  //   console.log(sliderValue);
+  // };
+
   return (
     <Box sx={{ height: "75vh", borderRadius: "3px", border: "1px solid red" }}>
       <ResponsiveChoropleth
         data={data}
-        theme = {theme(Theme)}
+        theme={theme(Theme)}
         features={contries.features}
         margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
         colors="nivo"
@@ -19,13 +28,16 @@ export default function GeoChart() {
         unknownColor="#666666"
         label="properties.name"
         valueFormat=".2s"
-        projectionScale={170}
+        projectionType="equalEarth"
+        projectionScale={sliderValue}
         projectionTranslation={[0.5, 0.5]}
         projectionRotation={[0, 0, 0]}
         enableGraticule={false}
+        graticuleLineWidth={0}
         graticuleLineColor="#dddddd"
         borderWidth={0.5}
         borderColor="#152538"
+        isInteractive={true}
         legends={[
           {
             anchor: "bottom-left",
@@ -52,6 +64,10 @@ export default function GeoChart() {
           },
         ]}
       />
+      <Stack direction={'row'} gap={2} marginTop={2}>
+        <Typography fontSize={18}>Zoom in</Typography>
+        <SliderBar sliderValue={sliderValue} setSliderValue={setSliderValue} />
+      </Stack>
     </Box>
   );
 }
