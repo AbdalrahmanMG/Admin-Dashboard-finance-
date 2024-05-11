@@ -6,7 +6,11 @@ import { theme } from "./../../themes/chartTheme";
 import { contries } from "./world_countries";
 import SliderBar from "../../components/SliderBar";
 
-export default function GeoChart() {
+interface GeoProps {
+  isLowerPart: boolean;
+}
+
+export default function GeoChart({ isLowerPart }: GeoProps) {
   const Theme = useTheme();
 
   const [sliderValue, setSliderValue] = useState<number | number[]>(202);
@@ -17,7 +21,14 @@ export default function GeoChart() {
   // };
 
   return (
-    <Box sx={{ height: "75vh", borderRadius: "3px", border: "1px solid red" }}>
+    <Box
+      sx={{
+        height: isLowerPart ? "300px" : "75vh",
+        borderRadius: "3px",
+        
+        border:isLowerPart? '' : "1px solid red",
+      }}
+    >
       <ResponsiveChoropleth
         data={data}
         theme={theme(Theme)}
@@ -38,36 +49,47 @@ export default function GeoChart() {
         borderWidth={0.5}
         borderColor="#152538"
         isInteractive={true}
-        legends={[
-          {
-            anchor: "bottom-left",
-            direction: "column",
-            justify: true,
-            translateX: 20,
-            translateY: -20,
-            itemsSpacing: 0,
-            itemWidth: 94,
-            itemHeight: 18,
-            itemDirection: "left-to-right",
-            itemTextColor: Theme.palette.text.secondary,
-            itemOpacity: 0.85,
-            symbolSize: 18,
-            effects: [
-              {
-                on: "hover",
-                style: {
-                  itemTextColor: Theme.palette.text.primary,
-                  itemOpacity: 1,
+        legends={
+          isLowerPart
+            ? []
+            : [
+                {
+                  anchor: "bottom-left",
+                  direction: "column",
+                  justify: true,
+                  translateX: 20,
+                  translateY: -20,
+                  itemsSpacing: 0,
+                  itemWidth: 94,
+                  itemHeight: 18,
+                  itemDirection: "left-to-right",
+                  itemTextColor: Theme.palette.text.secondary,
+                  itemOpacity: 0.85,
+                  symbolSize: 18,
+                  effects: [
+                    {
+                      on: "hover",
+                      style: {
+                        itemTextColor: Theme.palette.text.primary,
+                        itemOpacity: 1,
+                      },
+                    },
+                  ],
                 },
-              },
-            ],
-          },
-        ]}
+              ]
+        }
       />
-      <Stack direction={'row'} gap={2} marginTop={2}>
-        <Typography fontSize={18}>Zoom in</Typography>
-        <SliderBar sliderValue={sliderValue} setSliderValue={setSliderValue} />
-      </Stack>
+      {isLowerPart ? (
+        ""
+      ) : (
+        <Stack direction={"row"} gap={2} marginTop={2}>
+          <Typography fontSize={18}>Zoom in</Typography>
+          <SliderBar
+            sliderValue={sliderValue}
+            setSliderValue={setSliderValue}
+          />
+        </Stack>
+      )}
     </Box>
   );
 }

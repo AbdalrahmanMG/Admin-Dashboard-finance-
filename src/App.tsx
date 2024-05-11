@@ -28,6 +28,7 @@ const router = createBrowserRouter([
       {path:"/pie",element: <PieChart/>},
       {path:"/line",element: <LineChart/>},
       {path:"/geography",element: <GeoChart/>},
+      {path:'*', element: <Dashboard/>}
     ]
   }
 ])

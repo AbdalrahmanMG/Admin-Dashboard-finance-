@@ -7,12 +7,21 @@ import { DataItem } from "./DashCard";
 interface SmallPieProps {
   data: DataItem[];
   schemaColor: string;
+  isLowerPart: boolean;
 }
 
-export default function SmallPieChart({ data, schemaColor }: SmallPieProps) {
+export default function SmallPieChart({
+  isLowerPart = false,
+  data,
+  schemaColor,
+}: SmallPieProps) {
   const Theme = useTheme();
   return (
-    <Box sx={{ height: "100px", width: "100px" }}>
+    <Box
+      sx={{
+        height: isLowerPart ? "220px" : "100px",
+      }}
+    >
       <ResponsivePie
         data={data}
         theme={theme(Theme)}

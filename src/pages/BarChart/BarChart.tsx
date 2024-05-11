@@ -4,12 +4,15 @@ import { data } from "./data";
 import { Box, useTheme } from "@mui/material";
 import { theme } from "../../themes/chartTheme";
 
-export default function BarChart() {
-  const Theme = useTheme()
+interface BarProps {
+  isLowerPart: boolean;
+}
+
+export default function BarChart({ isLowerPart = false }: BarProps) {
+  const Theme = useTheme();
 
   return (
-    <Box sx={{height: '75vh'}}>
-
+    <Box sx={{ height: isLowerPart? '300px' : "75vh" }}>
       <ResponsiveBar
         data={data}
         theme={theme(Theme)}

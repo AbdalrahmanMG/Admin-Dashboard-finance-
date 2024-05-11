@@ -4,13 +4,13 @@ import { data } from "./data";
 import { Box, useTheme } from "@mui/material";
 import { theme } from "../../themes/chartTheme";
 
-export default function LineChart() {
-  const Theme = useTheme()
+export default function LineChart({ inDashboard = false }) {
+  const Theme = useTheme();
   return (
-    <Box sx={{height: '75vh'}}>
+    <Box sx={{ height: inDashboard ? "300px" : "75vh" }}>
       <ResponsiveLine
         data={data}
-        theme= {theme(Theme)}
+        theme={theme(Theme)}
         margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
         xScale={{ type: "point" }}
         yScale={{
